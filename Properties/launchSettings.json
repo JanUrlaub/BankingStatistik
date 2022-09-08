@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BankingStatistik": {
+      "commandName": "Project",
+      "commandLineArgs": "D:\\BankenExport"
+    }
+  }
+}
