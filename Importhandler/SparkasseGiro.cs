@@ -1,5 +1,6 @@
 ﻿using Import;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace BankingStatistik.ImportHandler
 
         internal static void getImportData(DirectoryInfo target, string spkUser, string spkPassword)
         {
-            IWebDriver driver = Selenium.getWebdriver();
+            FirefoxDriver driver = Selenium.getWebdriver();
             try
             {
                 string url = "https://www.sparkasse-holstein.de/de/home/onlinebanking/nbf/finanzuebersicht.html";
@@ -53,7 +54,8 @@ namespace BankingStatistik.ImportHandler
                 // Störer Prüfung
                 try
                 {
-                    driver.FindElement(By.ClassName("cbox-eyecatcher")).FindElement(By.ClassName("asdasd")).Click();
+                    driver.FindElement(By.ClassName("lightbox-visible"));
+                    driver.ExecuteScript("return document.getElementsByClassName('lightbox-visible')[0].parentNode.remove();");
                 }
                 catch (NoSuchElementException) { }
 
@@ -65,7 +67,7 @@ namespace BankingStatistik.ImportHandler
                 var element = elements.ElementAt(0);
                 element.Click();
                 driver.FindElement(By.ClassName("nbf-druckExportLabel")).Click();
-                driver.FindElement(By.XPath("//*[@title='Excel (CSV-CAMT)']")).Click();
+                driver.FindElement(By.XPath("//*[@title='Excel (CSV-CAMT V2)']")).Click();
                 
                 // Zurück zur Startseite
                 driver.Navigate().Back();
@@ -75,7 +77,7 @@ namespace BankingStatistik.ImportHandler
                 // Konto CSV Download Element 2
                 WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 40));
                 elements = wait.Until(driver => driver.FindElements(By.ClassName("mkp-card-bank-account")));
-                element = elements.ElementAt(1);
+                element = elements.ElementAt(2);
                 element.Click();
                 driver.FindElement(By.ClassName("nbf-druckExportLabel")).Click();
                 driver.FindElement(By.XPath("//*[@title='CSV-Export']")).Click();

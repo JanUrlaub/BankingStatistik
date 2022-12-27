@@ -12,7 +12,7 @@ namespace Import
     internal class Selenium
     {
 
-        internal static IWebDriver getWebdriver()
+        internal static FirefoxDriver getWebdriver()
         {
             
             FirefoxOptions options = new();
@@ -23,7 +23,7 @@ namespace Import
             options.SetPreference("browser.helperApps.neverAsk.saveToDisk", "text/csv,text/comma-separated-values;charset=ISO-8859-1");
             options.AddArguments("--headless");
             options.SetLoggingPreference(LogType.Browser, LogLevel.Severe);
-            IWebDriver driver = new FirefoxDriver(options);
+            FirefoxDriver driver = new FirefoxDriver(options);
 
             return driver;
         }
