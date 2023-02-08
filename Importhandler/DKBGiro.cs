@@ -63,7 +63,9 @@ namespace BankingStatistik.ImportHandler
                 driver.Navigate().GoToUrl("https://www.dkb.de/banking");
 
                 // Cookie-Meldung
-                driver.FindElement(By.Id("popin_tc_privacy_button_2")).Click();
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                js.ExecuteScript("return document.getElementById('privacy-overlay').remove();");
+                js.ExecuteScript("return document.getElementById('privacy-container').remove();");
 
                 //Anmeldung
                 driver.FindElement(By.Id("loginInputSelector")).SendKeys(username);
@@ -77,6 +79,8 @@ namespace BankingStatistik.ImportHandler
                 {
                     try
                     {
+                        js.ExecuteScript("return document.getElementById('privacy-overlay').remove();");
+                        js.ExecuteScript("return document.getElementById('privacy-container').remove();");
                         element = driver.FindElement(By.ClassName("evt-paymentTransaction"));
                     }
                     catch (NoSuchElementException) { }
@@ -85,11 +89,16 @@ namespace BankingStatistik.ImportHandler
                 } while (element == null && count < 20);
                 element.Click();
 
+                js.ExecuteScript("return document.getElementById('privacy-overlay').remove();");
+                js.ExecuteScript("return document.getElementById('privacy-container').remove();");
+
                 // Export CSV
                 driver.FindElement(By.ClassName("iconExport0")).Click();
 
                 // logout
                 driver.FindElement(By.Id("logout")).Click();
+
+                File.Move(Path.Combine(Path.GetTempPath(), "1065134361.csv"), targetFile);
 
             }
             catch(Exception exception)
@@ -103,7 +112,7 @@ namespace BankingStatistik.ImportHandler
                 driver.Quit();
             }
             
-            File.Move(Path.Combine(Path.GetTempPath(), "1065134361.csv"), targetFile);
+           
             return targetFile;
         }
 
