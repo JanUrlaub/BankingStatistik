@@ -79,8 +79,6 @@ namespace BankingStatistik.ImportHandler
                 {
                     try
                     {
-                        js.ExecuteScript("return document.getElementById('privacy-overlay').remove();");
-                        js.ExecuteScript("return document.getElementById('privacy-container').remove();");
                         element = driver.FindElement(By.ClassName("evt-paymentTransaction"));
                     }
                     catch (NoSuchElementException) { }
@@ -89,8 +87,15 @@ namespace BankingStatistik.ImportHandler
                 } while (element == null && count < 20);
                 element.Click();
 
-                js.ExecuteScript("return document.getElementById('privacy-overlay').remove();");
-                js.ExecuteScript("return document.getElementById('privacy-container').remove();");
+                try
+                {
+                    js.ExecuteScript("return document.getElementById('privacy-overlay').remove();");
+                    js.ExecuteScript("return document.getElementById('privacy-container').remove();");
+                }
+                catch(JavaScriptException)
+                {
+
+                }
 
                 // Export CSV
                 driver.FindElement(By.ClassName("iconExport0")).Click();
