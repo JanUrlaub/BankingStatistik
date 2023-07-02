@@ -90,7 +90,8 @@ namespace BankingStatistik
                 catch (Exception exception)
                 {
                     Exception e2 = new Exception(exception.Message + " in file " + import.FileInfo.FullName);
-                    throw e2;
+                    //throw e2;
+                    Console.WriteLine(e2.Message);
                 }
             }
 
