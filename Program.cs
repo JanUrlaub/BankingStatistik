@@ -15,13 +15,13 @@ namespace BankingStatistik
     {
         static void Main(string[] args)
         {
-            string dkbUser = ConfigurationManager.AppSettings["DKBuser"];
-            string dkbPassword = ConfigurationManager.AppSettings["DKBpassword"];
-            DKBGiro.getImportData(new DirectoryInfo(args[0]), dkbUser, dkbPassword);
+            //string dkbUser = ConfigurationManager.AppSettings["DKBuser"];
+            //string dkbPassword = ConfigurationManager.AppSettings["DKBpassword"];
+            //DKBGiro.getImportData(new DirectoryInfo(args[0]), dkbUser, dkbPassword);
 
-            string spkUser = ConfigurationManager.AppSettings["SPKuser"];
-            string spkPassword = ConfigurationManager.AppSettings["SPKpassword"];
-            SparkasseGiro.getImportData(new DirectoryInfo(args[0]), spkUser, spkPassword); 
+            //string spkUser = ConfigurationManager.AppSettings["SPKuser"];
+            //string spkPassword = ConfigurationManager.AppSettings["SPKpassword"];
+            //SparkasseGiro.getImportData(new DirectoryInfo(args[0]), spkUser, spkPassword); 
 
             List <AbstractImport> files = ImportCSV.GetImportFiles(new DirectoryInfo(args[0]));
 

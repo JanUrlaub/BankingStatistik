@@ -124,7 +124,7 @@ namespace BankingStatistik
             {
                 string sourceIBAN = import.convert(row[keys[SourceIBAN]].ToString(), SourceIBAN);
                 DateTime buchungstag = import.convertDate(row[keys[Buchungstag]].ToString());
-                decimal betrag = decimal.Parse(row[keys[Betrag]].ToString(), cultureInfo.NumberFormat);
+                decimal betrag = decimal.Parse(import.convert(row[keys[Betrag]].ToString(),Betrag), cultureInfo.NumberFormat);
 
                 Dictionary<string, object> dbRow = GetRow(sourceIBAN, buchungstag, betrag);
 

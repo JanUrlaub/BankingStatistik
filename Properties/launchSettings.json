@@ -2,7 +2,7 @@
   "profiles": {
     "BankingStatistik": {
       "commandName": "Project",
-      "commandLineArgs": "D:\\BankenExport"
+      "commandLineArgs": "C:\\Users\\info\\Downloads"
     }
   }
 }

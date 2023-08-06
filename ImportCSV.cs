@@ -43,9 +43,9 @@ namespace BankingStatistik
 
             // Skip the row with the column names
             Header = csvReader.ReadFields();
-            while (Header.Length == 3)
+            while (Header.Length < 3)
             {
-                if(!Header[0].StartsWith("Kontostand"))
+                if (Header.Length > 1 && !Header[0].StartsWith("Kontostand"))
                 {
                     globalValues.Add(Header[0], Header[1]);
                 }
@@ -121,6 +121,7 @@ namespace BankingStatistik
             string keysSparkasseGiro = string.Join(",", SparkasseGiro.translateColumns2.Keys.ToArray());
             string keysSparkasseKredit = string.Join(",", SparkasseKredit.translateColumns2.Keys.ToArray());
             string keysDKBGiro = string.Join(",", DKBGiro.translateColumns2.Keys.ToArray());
+            string keysDKBGiro2 = string.Join(",", DKBGiro2.translateColumns2.Keys.ToArray());
             string keysDKBKredit = string.Join(",", DKBKredit.translateColumns2.Keys.ToArray());
 
 
@@ -140,6 +141,10 @@ namespace BankingStatistik
                 else if (foundHeader == keysDKBGiro)
                 {
                     result.Add(new DKBGiro(csv));
+                }
+                else if (foundHeader == keysDKBGiro2)
+                {
+                    result.Add(new DKBGiro2(csv));
                 }
                 else if(foundHeader == keysDKBKredit)
                 {
