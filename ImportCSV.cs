@@ -43,7 +43,7 @@ namespace BankingStatistik
 
             // Skip the row with the column names
             Header = csvReader.ReadFields();
-            while (Header.Length < 3)
+            while (Header.Length < 4)
             {
                 if (Header.Length > 1 && !Header[0].StartsWith("Kontostand"))
                 {
