@@ -14,10 +14,10 @@ namespace BankingStatistik.ImportHandler
         public static CSVHeaders translateColumns2  = new()
         {
             { "Konto", TransferData.SourceIBAN },
-            { "Buchungsdatum", TransferData.Buchungstag},
-            { "Wertstellung", null },
-            { "Status", null },
-            { "Zahlungspflichtige*r", null},
+            { "Buchungsdatum", null },
+            { "Wertstellung", TransferData.Buchungstag },
+            { "Status", TransferData.Info },
+            { "Zahlungspflichtige*r", TransferData.Buchungstext},
             { "Zahlungsempfänger*in", TransferData.Empfänger },
             { "Verwendungszweck", TransferData.Verwendungszweck },
             { "Umsatztyp", null },
@@ -31,6 +31,7 @@ namespace BankingStatistik.ImportHandler
         public DKBGiro2(ImportCSV csv) : base(csv)
         {
             importTable = "banking.import_dkb_giro2";
+            importTableWhere = "Status ='gebucht'";
             translateColumns = translateColumns2;
         }
         public override string convert(string value, string colum)

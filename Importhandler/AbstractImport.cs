@@ -9,6 +9,7 @@ namespace BankingStatistik.ImportHandler
     {
         internal CSVHeaders translateColumns;
         internal string importTable;
+        internal string importTableWhere;
 
         public List<CSVHeaders> rawData { get; } 
         public FileInfo FileInfo { get; }

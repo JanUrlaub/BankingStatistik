@@ -25,7 +25,7 @@ namespace BankingStatistik
 
             List <AbstractImport> files = ImportCSV.GetImportFiles(new DirectoryInfo(args[0]));
 
-            foreach(AbstractImport file in files)
+            foreach (AbstractImport file in files)
             {
                 if(ImportCSV.IsImported(file))
                 {

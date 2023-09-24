@@ -102,7 +102,7 @@ namespace BankingStatistik
         {
             Connection.Open();
             CultureInfo cultureInfo = new("de-DE");
-            string table = import.importTable;
+            string table = import.importTable + (import.importTableWhere !=null ?" where "+ import.importTableWhere+" ":"");
             CSVHeaders keys = new();
             foreach(KeyValuePair<string,string> row in import.translateColumns)
             {
