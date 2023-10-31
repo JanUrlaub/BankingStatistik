@@ -123,6 +123,7 @@ namespace BankingStatistik.ImportHandler
         {
             importTable = "banking.import_sparkasse_giro";
             translateColumns = translateColumns2;
+            importTableWhere = "Info ='Umsatz gebucht'";
         }
 
         public override string convert(string value, string colum)

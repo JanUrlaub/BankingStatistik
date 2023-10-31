@@ -60,7 +60,7 @@ namespace BankingStatistik.ImportHandler
             IWebDriver driver = Selenium.getWebdriver();
             try
             {
-                driver.Navigate().GoToUrl("https://www.dkb.de/banking");
+                driver.Navigate().GoToUrl("https://www.ib.dkb.de/banking");
 
                 // Cookie-Meldung
                 IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
